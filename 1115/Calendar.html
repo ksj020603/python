@@ -1,0 +1,105 @@
+<HTML>
+	
+<HEAD>
+	<TITLE> 달력 만들기 </TITLE>
+</HEAD>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+	function current_time() 
+	{
+	  var now = new Date();
+	  var hour = now.getHours();
+	  var minute = now.getMinutes();
+	  var ampm;
+	
+	  now = null;
+	
+	  if (hour >= 12){
+	      hour = hour - 12;
+	      ampm = "PM";
+	   } else
+	     ampm = "AM";
+	
+	  hour = (hour == 0) ? 12 : hour;
+	
+	  if (minute < 10)
+	      minute = "0" + minute ;
+	
+	  return hour + ":" + minute + ampm;
+	}
+	
+	function Calendar(Month,Year)
+	{
+	  var now = new Date();
+	  firstDay = new Date(Year,Month,1);
+	  startDay = firstDay.getDay();
+	
+	  if (((Year % 4 == 0) && (Year % 100 != 0)) || (Year % 400 == 0))
+	       	days[1] = 29; 
+	  else
+		days[1] = 28;
+	  var output_string = ""
+	  output_string += "<CENTER>"
+	  output_string += "<TABLE BORDER=1 BORDERCOLOR=black>"
+	  output_string += "<TH COLSPAN=7>" 
+	  output_string += "<FONT COLOR=blue SIZE=6 >"
+	 	// 년과 월을 출력.
+	  output_string += now.getFullYear() + "년 " + (now.getMonth()+1) + "월"
+	  output_string += "</FONT>"
+	  output_string += "</TH>"
+	
+	  var openCol = "<TD BGCOLOR=silver WIDTH=70 HEIGHT=50> "
+	  var closeCol = "</FONT></B></TD>"
+	  output_string += "<TR ALIGN=center VALIGN=center>"
+	  var weekDay = new Array("일", "월", "화", "수", "목", "금", "토")
+	
+	  for (var dayNum = 0; dayNum <= 6; dayNum++)
+	     	output_string += openCol + weekDay[dayNum] + closeCol 
+	
+	  output_string += "</TR>"
+	  document.write(output_string);
+	  document.write("<TR ALIGN=RIGHT>");
+	
+	  var column = 0;
+	  for (i=0; i<startDay; i++)
+	  {
+	     document.write("<TD>&nbsp</TD>");
+	     column++;
+	  }
+	
+	  for (i=1; i<=days[Month]; i++)
+	  { 
+	       if ((i == thisDay)  && (Month == thisMonth) && (Year == thisYear))
+		     {
+	       		document.write("<TD WIDTH=70 HEIGHT=50> <B><FONT COLOR=red>");
+						document.write(i,"<BR>",current_time(),"</FONT></B></TD>");
+		     }
+	        else
+	           document.write("<TD WIDTH=70 HEIGHT=50>",i,"</TD>");
+	        column++;
+	        if (column == 7)
+	        {
+	           document.write("</TR><TR ALIGN=RIGHT>");
+	           column = 0;
+	        }
+	   }
+	
+	   document.write("</TR></TABLE>");
+	}
+	    
+	var days = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+	var today = new Date();
+	var thisDay = today.getDate();
+	var thisMonth = today.getMonth();
+	var thisYear = today.getYear();
+	
+	Calendar(thisMonth,thisYear);
+	
+	//-->
+	</SCRIPT>
+	<BR><BR><CENTER>
+
+</BODY>
+</HTML>
