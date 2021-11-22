@@ -1,0 +1,63 @@
+<HTML>
+	
+<HEAD>
+	<TITLE>쿠키</TITLE>
+	<STYLE TYPE="text/css"> 
+		body {font-size:12px} 
+	</STYLE> 
+  
+	<SCRIPT LANGUAGE="JavaScript"> 
+	<!-- 
+	  expireDate = new Date(); 
+	  expireDate.setMonth(expireDate.getMonth()+6); 
+	  cookieName = ""; 
+	    
+	  if (document.cookie != "") { 
+	     cookieName = document.cookie.split("=")[1]; 
+	  } 
+	  
+	  function setCookie() 
+	  { 
+	     cookieName = "cookie"; 
+	     document.cookie = "cookieName="+cookieName+";expires=" + expireDate.toGMTString(); 
+	  } 
+	  
+	   function deleteCookie()
+	   { 
+	     if (document.cookie != "") { 
+	        thisCookie = document.cookie.split("; ") 
+	        expireDate = new Date() 
+	        expireDate.setDate(expireDate.getDate()-1) 
+	        for (i=0; i<thisCookie.length; i++) { 
+				  	cookieName = thisCookie[i].split("=")[1];
+	        	document.cookie = "cookieName="+cookieName + ";expires=" + expireDate.toGMTString();
+	        } 
+	     } 
+	   } 
+	//--> 
+	</SCRIPT> 
+</HEAD> 
+
+<BODY> 
+	<SCRIPT LANGUAGE="JavaScript">          
+	<!-- 
+		if (document.cookie != "" ){ 
+		    document.write("<H3>쿠키가 있습니다.</H3>"); 
+				document.write("<P>쿠키의 이름은: "); 
+		    document.write("<FONT COLOR='red'>" + cookieName + "</FONT>"); 
+		    document.write("<P>쿠키의 만기일은 : "); 
+		    document.write("<FONT COLOR='blue'>" + expireDate.toGMTString() + "</FONT>"); 
+		} 
+		else { 
+		    document.write("<H3>쿠키가 없습니다.</H3>"); 
+		} 
+	//--> 
+	</SCRIPT>          
+  
+	<FORM> 
+		<INPUT TYPE="submit" VALUE="쿠키 삭제¦" onClick="deleteCookie();"> 
+		<INPUT TYPE="submit" VALUE="쿠키 만들기" onClick="setCookie();"> 
+	</FORM> 
+</BODY>
+ 
+</HTML> 

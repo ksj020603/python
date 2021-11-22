@@ -1,0 +1,119 @@
+<HTML>
+	
+<HEAD>
+	<TITLE> 방문자 카운터 만들기 </TITLE>
+	<SCRIPT LANGUAGE="JavaScript">
+	<!--
+		function drop(n) 
+		{ 
+		  self.moveBy(0,-900) 
+		  
+		  for(i = n; i > 0; i--){ 
+		    self.moveBy(0,3)
+		  }
+		} 
+
+		function getCookie(name)
+		{
+		  var cname = name + "=";
+		  var dc = document.cookie;
+		  if (dc.length > 0){
+		     begin = dc.indexOf(cname);
+		        if (begin != -1){
+		           begin += cname.length;
+		           end = dc.indexOf(";", begin);
+		           if (end == -1) end = dc.length;
+		           return unescape(dc.substring(begin, end));
+		        } 
+		  }
+		  return null;
+		}
+
+		function setCookie(name, value, expires) 
+		{
+		  document.cookie = name + "=" + escape(value) + "; path=/" + ((expires == null) ? "" : "; expires=" + expires.toGMTString());
+		}
+
+		function delCookie() 
+		{
+		  setCookie("yourname", "")
+		  setCookie("yourpassword", "")
+		  setCookie("yourid", "")
+		  setCookie("NotOpen","")
+		  location.reload()
+		}
+
+		function getValue(element) 
+		{
+		  var value = getCookie(element.name);
+		  if (value != null) element.value = value;
+		}
+
+		function setValue(element) 
+		{
+		  setCookie(element.name, element.value, exp);
+		}
+
+		function Reset_Cnt() 
+		{
+		  var myday = new Date()
+		  var CookieCounter = 0
+		  setCookie("CookieCounter", CookieCounter, myday)
+		  location.reload()
+		}
+
+		var exp = new Date();
+		exp.setTime(exp.getTime() + (1000 * 60 * 60 * 24 * 31));
+
+		if (getCookie("NotOpen") != "checked")
+		{
+		  window.open('news.html', 'pop', 'scrollbar=yes,left=200,top=100,width=400,height=100');
+		}
+
+	//-->
+	</SCRIPT>
+</HEAD>
+ 
+<BODY onLoad="drop(300)">
+	<FORM NAME="form" onLoad="focus(form.CookieCounter)">
+		<TABLE BORDER="1">
+			<TR>
+				<TD> NAME </TD>
+				<TD>
+					<INPUT TYPE = "text" NAME = "yourname" onFocus = "getValue(this)" onBlur = "setValue(this)">
+				</TD>  
+	  	</TR>
+	  	<TR>
+	  		<TD> ID </TD>
+	  		<TD> 
+	  			<INPUT TYPE = "text" NAME = "yourid" onFocus = "getValue(this)" onBlur = "setValue(this)">
+				</TD>
+			</TR>
+			<TR>	
+				<TD> Password </TD>
+				<TD> 
+					<INPUT TYPE = "password" NAME = "yourpassword" onFocus = "getValue(this)" onBlur = "setValue(this)">
+				</TD>
+			</TR>	
+		</TABLE>
+	</FORM>
+
+	<SCRIPT LANGUAGE="JavaScript"> 
+	<!--
+		var myday = new Date();
+		myday.setTime(myday.getTime() +  (365 * 24 * 60 * 60 * 1000));
+		if(!(CookieCounter = getCookie("CookieCounter"))) CookieCounter = 0;
+		CookieCounter++;
+		document.write("이 홈페이지에</FONT> <FONT COLOR=RED><B>" + CookieCounter
+		         + "</FONT></B>번째 방문하셨습니다. </FONT> <P>");
+		setCookie("CookieCounter", CookieCounter, myday);
+	//-->
+	</SCRIPT>
+	
+	<FORM>
+		<INPUT TYPE="button" VALUE="모든 쿠키 값의 초기화" onClick="delCookie()"> 
+		<INPUT TYPE="button" VALUE="방문 카운트 초기화" onClick="Reset_Cnt()"> 
+	</FORM>
+</BODY>
+
+</HTML>
